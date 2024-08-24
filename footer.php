@@ -145,6 +145,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Active js -->
     <script src="js/active.js"></script>
 
+<!-- JS Libraies -->
+<script src="izitoast/js/iziToast.min.js"></script>
+<!-- Page Specific JS File -->
+<script src="js/toastr.js"></script>
+
+<script src="js/custom.js"></script>
+
+<!-- Include SweetAlert JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.15/dist/sweetalert2.all.min.js"></script>
+
     <!--Modal JS-->
 <script src="js/L_S.js"></script>
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script> -->
