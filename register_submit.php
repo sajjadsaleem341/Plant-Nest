@@ -13,5 +13,6 @@ if($check_user>0){
 }else{
 	$added_on=date('Y-m-d h:i:s');
 	mysqli_query($con,"insert into users(Name,Email,Mobile,Password,Date) values('$name','$email','$mobile','$password','$added_on')");
-	header('Location: index.php');
+	echo "insert";
+	// header('Location: index.php');
 }
