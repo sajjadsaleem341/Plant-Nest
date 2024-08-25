@@ -36,7 +36,7 @@ include "header.php";
 <!-- ##### Wishlist Heading End ##### -->
 
 <!-- ##### Wishlist Table Start ##### -->
-<div class="container mt-3">
+<div class="container mt-3 mb-5">
     <div class="row">
         <div class="col-12">
             <table class="table wishlist-table">
