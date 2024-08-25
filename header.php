@@ -1,3 +1,7 @@
+<?php
+require "config.php";
+require "functions.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +18,8 @@
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
+    <link rel="stylesheet" href="izitoast/css/iziToast.min.css">
+
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/form.css">
@@ -21,6 +27,15 @@
 </head>
 
 <body>
+    <button hidden id="message_send"></button>
+    <button hidden id="post_update"></button>
+    <button hidden id="registration_success"></button>
+    <button hidden id="password_update"></button>
+    <button hidden id="profile_update"></button>
+    <button hidden id="upload"></button>
+    <button hidden id="add_post"></button>
+    <button hidden id="reset_link"></button>
+    <button hidden id="reset_password"></button>
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-circle"></div>
@@ -40,33 +55,48 @@
                         <div class="top-header-content d-flex align-items-center justify-content-between">
                             <!-- Top Header Content -->
                             <div class="top-header-meta">
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: infodeercreative@gmail.com</span></a>
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +1 234 122 122</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom"
+                                    title="infodeercreative@gmail.com"><i class="fa fa-envelope-o"
+                                        aria-hidden="true"></i> <span>Email: sajjadsaleem341@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i
+                                        class="fa fa-phone" aria-hidden="true"></i> <span>Call Us:
+                                        +923176122252</span></a>
                             </div>
 
                             <!-- Top Header Content -->
                             <div class="top-header-meta d-flex">
-                                <!-- Language Dropdown -->
-                                <div class="language-dropdown">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle mr-30" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">USA</a>
-                                            <a class="dropdown-item" href="#">UK</a>
-                                            <a class="dropdown-item" href="#">Bangla</a>
-                                            <a class="dropdown-item" href="#">Hindi</a>
-                                            <a class="dropdown-item" href="#">Spanish</a>
-                                            <a class="dropdown-item" href="#">Latin</a>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- Login -->
                                 <div class="login">
-                                    <a href="#myModal" data-toggle="modal"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
+                                    <?php
+                                        if(isset($_SESSION['USER_LOGIN'])){
+                                        ?>
+                                    <div class="language-dropdown">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle mr-30" type="button"
+                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false"><a style="margin:auto"><i class="fa fa-user"
+                                                        aria-hidden="true"></i></a><?= $_SESSION['USER_NAME'] ?></button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Profile</a>
+                                                <a class="dropdown-item" href="#">Orders</a>
+                                                <a class="dropdown-item" href="#">Wishlist</a>
+                                                <a class="dropdown-item" href="logout.php">Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                        }else{
+                                        ?>
+                                    <a href="#myModal" data-toggle="modal"><i class="fa fa-user" aria-hidden="true"></i>
+                                        <span>Login</span></a>
+                                    <?php
+                                        }
+                                        ?>
                                 </div>
                                 <!-- Cart -->
                                 <div class="cart">
-                                    <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span class="cart-quantity">(1)</span></span></a>
+                                    <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span
+                                                class="cart-quantity">(1)</span></span></a>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +140,7 @@
                                             <li><a href="shop.php">Shop</a>
                                                 <ul class="dropdown">
                                                     <li><a href="shop.php">Shop</a></li>
-                                                    <li><a href="shop-details.php">Shop Details</a></li>
+                                                    <li><a href="product.php">product details</a></li>
                                                     <li><a href="cart.php">Shopping Cart</a></li>
                                                     <li><a href="checkout.php">Checkout</a></li>
                                                 </ul>
@@ -148,7 +178,8 @@
                     <!-- Search Form -->
                     <div class="search-form">
                         <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                            <input type="search" name="search" id="search"
+                                placeholder="Type keywords &amp; press enter...">
                             <button type="submit" class="d-none"></button>
                         </form>
                         <!-- Close Icon -->
@@ -160,7 +191,7 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-         <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" data-backdrop="static" role="dialog">
         <div class="modal-dialog">
 
@@ -192,8 +223,9 @@
                         </div>
                         <!-- Login Form -->
                         <div id="login-form">
-                            <form method="post">
-                                <input type="text" placeholder="Enter your email" name="l_email" id="l_email" autofocus>
+                            <form>
+                                <input type="email" placeholder="Enter your email" name="l_email" id="l_email"
+                                    autofocus>
                                 <p class="help-block text-danger" id="l_email_error" style="padding:0 1rem 0"></p>
 
                                 <input type="password" placeholder="Enter password" name="l_password" id="l_password" />
@@ -213,7 +245,7 @@
 
                         <!-- Signup Form -->
                         <div id="signup-form">
-                            <form method="post">
+                            <form>
                                 <input type="text" name="name" id="name" placeholder="Enter your name" autofocus>
                                 <p class="help-block text-danger" id="name_error" style="padding:0 1rem 0"></p>
 

@@ -55,10 +55,10 @@
                             <!-- Single Best Seller Products -->
                             <div class="single-best-seller-product d-flex align-items-center">
                                 <div class="product-thumbnail">
-                                    <a href="shop-details.php"><img src="img/bg-img/4.jpg" alt=""></a>
+                                    <a href="product.php"><img src="img/bg-img/4.jpg" alt=""></a>
                                 </div>
                                 <div class="product-info">
-                                    <a href="shop-details.php">Cactus Flower</a>
+                                    <a href="product.php">Cactus Flower</a>
                                     <p>$10.99</p>
                                 </div>
                             </div>
@@ -66,10 +66,10 @@
                             <!-- Single Best Seller Products -->
                             <div class="single-best-seller-product d-flex align-items-center">
                                 <div class="product-thumbnail">
-                                    <a href="shop-details.php"><img src="img/bg-img/5.jpg" alt=""></a>
+                                    <a href="product.php"><img src="img/bg-img/5.jpg" alt=""></a>
                                 </div>
                                 <div class="product-info">
-                                    <a href="shop-details.php">Tulip Flower</a>
+                                    <a href="product.php">Tulip Flower</a>
                                     <p>$11.99</p>
                                 </div>
                             </div>
@@ -144,6 +144,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+
+<!-- JS Libraies -->
+<script src="izitoast/js/iziToast.min.js"></script>
+<!-- Page Specific JS File -->
+<script src="js/toastr.js"></script>
+
+<script src="js/custom.js"></script>
+
+<!-- Include SweetAlert JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.15/dist/sweetalert2.all.min.js"></script>
 
     <!--Modal JS-->
 <script src="js/L_S.js"></script>
