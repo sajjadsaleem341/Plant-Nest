@@ -140,7 +140,7 @@ require "functions.php";
                                             <li><a href="shop.php">Shop</a>
                                                 <ul class="dropdown">
                                                     <li><a href="shop.php">Shop</a></li>
-                                                    <li><a href="shop-details.php">Shop Details</a></li>
+                                                    <li><a href="product.php">product details</a></li>
                                                     <li><a href="cart.php">Shopping Cart</a></li>
                                                     <li><a href="checkout.php">Checkout</a></li>
                                                 </ul>

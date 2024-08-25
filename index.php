@@ -487,7 +487,7 @@ include 'header.php'
                     <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="100ms">
                         <!-- Product Image -->
                         <div class="product-img">
-                            <a href="shop-details.php"><img src="img/bg-img/9.jpg" alt=""></a>
+                            <a href="product.php"><img src="img/bg-img/9.jpg" alt=""></a>
                             <!-- Product Tag -->
                             <div class="product-tag">
                                 <a href="#">Hot</a>
@@ -500,7 +500,7 @@ include 'header.php'
                         </div>
                         <!-- Product Info -->
                         <div class="product-info mt-15 text-center">
-                            <a href="shop-details.php">
+                            <a href="product.php">
                                 <p>Cactus Flower</p>
                             </a>
                             <h6>$10.99</h6>
@@ -513,7 +513,7 @@ include 'header.php'
                     <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="200ms">
                         <!-- Product Image -->
                         <div class="product-img">
-                            <a href="shop-details.php"><img src="img/bg-img/10.jpg" alt=""></a>
+                            <a href="product.php"><img src="img/bg-img/10.jpg" alt=""></a>
                             <div class="product-meta d-flex">
                                 <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
                                 <a href="cart.php" class="add-to-cart-btn">Add to cart</a>
@@ -522,7 +522,7 @@ include 'header.php'
                         </div>
                         <!-- Product Info -->
                         <div class="product-info mt-15 text-center">
-                            <a href="shop-details.php">
+                            <a href="product.php">
                                 <p>Cactus Flower</p>
                             </a>
                             <h6>$10.99</h6>
@@ -535,7 +535,7 @@ include 'header.php'
                     <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="300ms">
                         <!-- Product Image -->
                         <div class="product-img">
-                            <a href="shop-details.php"><img src="img/bg-img/11.jpg" alt=""></a>
+                            <a href="product.php"><img src="img/bg-img/11.jpg" alt=""></a>
                             <div class="product-meta d-flex">
                                 <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
                                 <a href="cart.php" class="add-to-cart-btn">Add to cart</a>
@@ -544,7 +544,7 @@ include 'header.php'
                         </div>
                         <!-- Product Info -->
                         <div class="product-info mt-15 text-center">
-                            <a href="shop-details.php">
+                            <a href="product.php">
                                 <p>Cactus Flower</p>
                             </a>
                             <h6>$10.99</h6>
@@ -557,7 +557,7 @@ include 'header.php'
                     <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="400ms">
                         <!-- Product Image -->
                         <div class="product-img">
-                            <a href="shop-details.php"><img src="img/bg-img/12.jpg" alt=""></a>
+                            <a href="product.php"><img src="img/bg-img/12.jpg" alt=""></a>
                             <!-- Product Tag -->
                             <div class="product-tag sale-tag">
                                 <a href="#">Hot</a>
@@ -570,7 +570,7 @@ include 'header.php'
                         </div>
                         <!-- Product Info -->
                         <div class="product-info mt-15 text-center">
-                            <a href="shop-details.php">
+                            <a href="product.php">
                                 <p>Cactus Flower</p>
                             </a>
                             <h6>$10.99</h6>
