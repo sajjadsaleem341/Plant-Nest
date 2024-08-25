@@ -91,12 +91,12 @@
 
     // :: 6.0 magnificPopup Active Code
     if ($.fn.magnificPopup) {
-        $('.portfolio-img, .product-img').magnificPopup({
-            gallery: {
-                enabled: true
-            },
-            type: 'image'
-        });
+        // $('.portfolio-img, .product-img').magnificPopup({
+        //     gallery: {
+        //         enabled: true
+        //     },
+        //     type: 'image'
+        // });
         $('.video-icon').magnificPopup({
             type: 'iframe'
         });
