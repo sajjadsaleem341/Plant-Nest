@@ -1,5 +1,15 @@
 <?php
 include 'header.php';
+$msg = 'Data Not Found';
+
+$cat_id = mysqli_real_escape_string($con,$_GET['id']);
+if($cat_id>0){
+    $get_product = get_product($con,'',$cat_id,'');
+}
+else{
+    echo "<script>window.location.href='index.php'</script>";
+    
+}
 $sql = "select * from categories";
 $res = mysqli_query($con,$sql);
 $cat_arr=array();
@@ -39,7 +49,7 @@ while($row=mysqli_fetch_assoc($res)){
                 <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
                     <!-- Shop Page Count -->
                     <div class="shop-page-count">
-                        <p>All Products</p>
+                        <p>Shop by Categories</p>
                     </div>
                     <!-- Search by Terms -->
                     <div class="search_by_terms">
@@ -75,7 +85,7 @@ while($row=mysqli_fetch_assoc($res)){
                         ?>
                             <!-- Single Checkbox -->
                             <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                <a href="categories.php?id=<?= $list['Id']?>" style="color:#6c757d" ><label class="" for="customCheck2"><?= $list['Categories']?> <span
+                                <a href="categories.php?id=<?= $list['Id']?>" style="color:#6c757d"><label class="" for="customCheck2"><?= $list['Categories']?> <span
                                 class="text-muted">(20)</span></label></a>
                             </div>
                             <?php
@@ -87,13 +97,16 @@ while($row=mysqli_fetch_assoc($res)){
             </div>
 
             <!-- All Products Area -->
+            <?php
+        if(count($get_product)>0){
+        ?>
             <div class="col-12 col-md-8 col-lg-9">
                 <div class="shop-products-area">
                     <div class="row">
 
                         <!-- Single Product Area -->
                         <?php
-                    $get_product=get_product($con,'','','');
+                    $get_product=get_product($con,'',$cat_id,'');
                     foreach($get_product as $list){
                     ?>
                         <div class="col-12 col-sm-6 col-lg-4">
@@ -139,6 +152,16 @@ while($row=mysqli_fetch_assoc($res)){
                     </nav>
                 </div>
             </div>
+            <?php
+            }
+            else{
+            ?>
+                <div class="col-12" style="text-align:center; font-size:25px;color:red;">
+                     <?= $msg ?>
+                  </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </section>

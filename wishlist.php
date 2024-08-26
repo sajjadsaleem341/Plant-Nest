@@ -1,5 +1,15 @@
 <?php
-include "header.php";
+require "header.php";
+// have to login first//
+if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN']!=''){
+}
+else {
+    echo "<script>window.location.href='index.php'</script>";
+   die();
+}
+
+$user_id = $_SESSION['USER_ID'];
+$sql = mysqli_query($con,"SELECT wishlist.*, product.* FROM wishlist,product WHERE wishlist.user_id=$user_id AND wishlist.product_id=product.id");
 ?>
 
 <!-- ##### Breadcrumb Area Start ##### -->
@@ -46,34 +56,24 @@ include "header.php";
                             <th scope="col" class="text-center align-middle">Product Image</th>
                             <th scope="col" class="text-center align-middle">Product Name</th>
                             <th scope="col" class="text-center align-middle">Price</th>
-                            <th scope="col" class="text-center align-middle">Add to Cart</th>
                             <th scope="col" class="text-center align-middle">Remove</th>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                        while($row=mysqli_fetch_assoc($sql)){
+                        ?>
                         <tr>
-                            <td class="text-center align-middle"><img src="img/product1.jpg" alt="Product Image" class="img-fluid rounded" style="width: 100px;"></td>
-                            <td class="text-center align-middle">Product 1</td>
-                            <td class="text-center align-middle">$100</td>
+                            <td class="text-center align-middle"><a href="product.php?id=<?= $row['Id']?>"><img src="./image/<?= $row['Image'] ?>" alt="Product Image" class="img-fluid rounded" style="width: 100px;"></a></td>
+                            <td class="text-center align-middle"><?=$row['Name']?></td>
+                            <td class="text-center align-middle">$<?=$row['Price']?></td>
                             <td class="text-center align-middle">
-                                <a href="#" class="text-success" style="font-size: 24px;"><i class="fa fa-shopping-cart"></i></a>
-                            </td>
-                            <td class="text-center align-middle">
-                                <a href="#" class="remove-icon" style="font-size: 24px;"><i class="fa fa-times"></i></a>
+                                <button style="border: none; font-size:20px; padding: 0 5px 0 5px;" class="remove-icon" onclick="removeFromWishlist(<?= $row['Id'] ?>);"><i class="fa fa-times"></i></button>
                             </td>
                         </tr>
-                        <!-- Repeat similar rows as needed -->
-                        <tr>
-                            <td class="text-center align-middle"><img src="img/product2.jpg" alt="Product Image" class="img-fluid rounded" style="width: 100px;"></td>
-                            <td class="text-center align-middle">Product 2</td>
-                            <td class="text-center align-middle">$150</td>
-                            <td class="text-center align-middle">
-                                <a href="#" class="text-success" style="font-size: 24px;"><i class="fa fa-shopping-cart"></i></a>
-                            </td>
-                            <td class="text-center align-middle">
-                                <a href="#" class="remove-icon" style="font-size: 24px;"><i class="fa fa-times"></i></a>
-                            </td>
-                        </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -81,6 +81,29 @@ include "header.php";
     </div>
 </div>
 <!-- ##### Wishlist Table End ##### -->
+
+<script>
+function removeFromWishlist(productId) {
+    if (confirm("Are you sure you want to remove this item from your wishlist?")) {
+        fetch('remove_from_wishlist.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'product_id=' + productId
+        })
+        .then(response => response.text())
+        .then(data => {
+            if(data == 'success'){
+                location.reload(); // Reload the page to reflect the changes
+            } else {
+                alert('Failed to remove the item. Please try again.');
+            }
+        });
+    }
+}
+</script>
+
 
 <style>
     .wishlist-table {

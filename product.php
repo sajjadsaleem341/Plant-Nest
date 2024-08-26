@@ -8,6 +8,15 @@ if($product_id>0){
 else{
     echo "<script>window.location.href='index.php'</script>";
 }
+// Check if the content is favorited by the user
+$is_favorited = false;
+if (isset($_SESSION['USER_LOGIN'])) {
+    $user_id = $_SESSION['USER_ID'];
+    $sql_check_favorite = mysqli_query($con, "SELECT * FROM wishlist WHERE user_id = $user_id AND product_id = $product_id");
+    if (mysqli_num_rows($sql_check_favorite) > 0) {
+        $is_favorited = true;
+    }
+}
 ?>
 <!-- ##### Breadcrumb Area Start ##### -->
 <div class="breadcrumb-area">
@@ -44,9 +53,7 @@ else{
                         <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <a class="product-img" href="img/bg-img/49.jpg" title="Product Image">
-                                        <img class="d-block w-100" src="img/bg-img/49.jpg" alt="1">
-                                    </a>
+                                <img class="d-block w-100" src="./image/<?= $get_product['0']['Image'] ?>" alt="1">
                                 </div>
                             </div>
                         </div>
@@ -106,13 +113,41 @@ else{
                                         onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
                                             class="fa fa-plus" aria-hidden="true"></i></span>
                                 </div>
-                                    <a class="btn alazea-btn ml-15" href="javascript:void(0)" onclick="manage_cart('<?= $get_product['0']['Id']?>','add')"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a>
+                                    <a class="btn alazea-btn ml-15" href="javascript:void(0)" onclick="manage_cart('<?= $get_product['0']['Id']?>','add'); location.reload();"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a>
                             </form>
-                            <!-- Wishlist & Compare -->
+                            <!-- Wishlist -->
                             <div class="wishlist-compare d-flex flex-wrap align-items-center">
-                                <a href="#" class="wishlist-btn ml-15"><i class="icon_heart_alt"></i></a>
+                                <button style="border:none; color:#70c745" class="wishlist-btn ml-15" id="favorite-button">
+                                <i class="fa <?= $is_favorited ? 'fa-heart' : 'fa-heart-o' ?>"></i>
+                            </button>
                             </div>
                         </div>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const favoriteButton = document.getElementById('favorite-button');
+                                <?php if (isset($_SESSION['USER_LOGIN'])) { ?>
+                                    favoriteButton.addEventListener('click', function() {
+                                        // Send AJAX request to update favorite status
+                                        const xhr = new XMLHttpRequest();
+                                        xhr.onreadystatechange = function() {
+                                            if (xhr.readyState === 4 && xhr.status === 200) {
+                                                // Parse the response to get favorited status
+                                                const response = JSON.parse(xhr.responseText);
+                                                const isFavorited = response.is_favorited;
+
+                                                // Toggle the heart icon
+                                                favoriteButton.querySelector('i').classList.toggle('fa-heart', isFavorited);
+                                                favoriteButton.querySelector('i').classList.toggle('fa-heart-o', !isFavorited);
+                                            }
+                                        };
+                                        xhr.open('POST', 'update_favorite.php', true);
+                                        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                                        xhr.send('user_id=<?= $user_id ?>&product_id=<?= $product_id ?>');
+                                    });
+                                <?php } ?>
+                            });
+                        </script>
 
                         <?php
                 }

@@ -21,15 +21,13 @@ $res = mysqli_query($con,$select);
                                        <th>User Id</th>
                                        <th>Order Date</th>
                                        <th>Address</th>
-                                       <th>Payment Type</th>
-                                       <th>Payment Status</th>
+                                       <th>Comment</th>
                                        <th>Order Status</th>
-                                       <!-- <th>View Details</th> -->
                                     </tr>
                                  </thead>
                                  <tbody>
                                     <?php
-                                    $res=mysqli_query($con,"select orders.*,orders.Payment_Status as Payment_Status_str,order_status.Name as Order_Status_Str from orders,order_status where order_status.Id=orders.order_status order by orders.Date desc");
+                                    $res=mysqli_query($con,"select orders.*,order_status.Name as Order_Status_Str from orders,order_status where order_status.Id=orders.order_status order by orders.Date desc");
                                     while($row=mysqli_fetch_assoc($res)){
                                     ?>
                                     <tr class=" pb-0">
@@ -41,8 +39,7 @@ $res = mysqli_query($con,$select);
                                        <?= $row['City'] ?>
                                        <?= $row['Pincode'] ?>
                                        </td>
-                                       <td> <?= $row['Payment_Type'] ?> </td>
-                                       <td> <b><?= $row['Payment_Status'] ?></b> </td>
+                                       <td> <?= $row['Comment'] ?> </td>
                                        <td>
                                        <?php
                                           if($row['Order_Status']=='1'){
