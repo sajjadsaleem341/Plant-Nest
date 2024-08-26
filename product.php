@@ -181,10 +181,10 @@ if (isset($_SESSION['USER_LOGIN'])) {
                         <li class="nav-item">
                             <a href="#description" class="nav-link active" data-toggle="tab" role="tab">Description</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span
                                     class="text-muted">(1)</span></a>
-                        </li>
+                        </li> -->
                     </ul>
                     <!-- Tab Content -->
                     <div class="tab-content">
