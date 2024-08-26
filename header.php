@@ -1,3 +1,21 @@
+<?php
+require "config.php";
+require "functions.php";
+require "add_cart_func.php";
+
+// $active = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
+$cart_total = 0;
+$sql = "select * from categories";
+$res = mysqli_query($con,$sql);
+$cat_arr=array();
+while($row=mysqli_fetch_assoc($res)){
+    $cat_arr[]=$row;
+}
+
+$obj=new add_to_cart();
+$totalProduct=$obj->totalProduct();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,10 +27,12 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Alazea - Gardening &amp; Landscaping HTML Template</title>
+    <title>Plant Nest - Live With Green</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
+
+    <link rel="stylesheet" href="izitoast/css/iziToast.min.css">
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -21,13 +41,22 @@
 </head>
 
 <body>
+    <button hidden id="message_send"></button>
+    <button hidden id="feedback_send"></button>
+    <button hidden id="review_submitted"></button>
+    <button hidden id="registration_success"></button>
+    <button hidden id="password_update"></button>
+    <button hidden id="profile_update"></button>
+    <button hidden id="upload"></button>
+    <button hidden id="reset_link"></button>
+    <button hidden id="reset_password"></button>
     <!-- Preloader -->
-    <div class="preloader d-flex align-items-center justify-content-center">
+    <!-- <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-circle"></div>
         <div class="preloader-img">
             <img src="img/core-img/leaf.png" alt="">
         </div>
-    </div>
+    </div> -->
 
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
@@ -40,33 +69,51 @@
                         <div class="top-header-content d-flex align-items-center justify-content-between">
                             <!-- Top Header Content -->
                             <div class="top-header-meta">
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: infodeercreative@gmail.com</span></a>
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +1 234 122 122</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom"
+                                    title="infodeercreative@gmail.com"><i class="fa fa-envelope-o"
+                                        aria-hidden="true"></i> <span>Email: sajjadsaleem341@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i
+                                        class="fa fa-phone" aria-hidden="true"></i> <span>Call Us:
+                                        +923176122252</span></a>
                             </div>
 
                             <!-- Top Header Content -->
                             <div class="top-header-meta d-flex">
-                                <!-- Language Dropdown -->
-                                <div class="language-dropdown">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle mr-30" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">USA</a>
-                                            <a class="dropdown-item" href="#">UK</a>
-                                            <a class="dropdown-item" href="#">Bangla</a>
-                                            <a class="dropdown-item" href="#">Hindi</a>
-                                            <a class="dropdown-item" href="#">Spanish</a>
-                                            <a class="dropdown-item" href="#">Latin</a>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- Login -->
                                 <div class="login">
-                                    <a href="#myModal" data-toggle="modal"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
+                                    <?php
+                                        if(isset($_SESSION['USER_LOGIN'])){
+                                        ?>
+                                    <div class="language-dropdown">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle mr-30" type="button"
+                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false"><a style="margin:auto"><i class="fa fa-user"
+                                                        aria-hidden="true"></i></a><?= $_SESSION['USER_NAME'] ?></button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="profile.php">Profile</a>
+                                                <a class="dropdown-item" href="order.php">Orders</a>
+                                                <a class="dropdown-item" href="wishlist.php">Wishlist</a>
+                                                <a class="dropdown-item" href="logout.php">Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                        }else{
+                                        ?>
+                                    <a href="#myModal" data-toggle="modal"><i class="fa fa-user" aria-hidden="true"></i>
+                                        <span>Login</span></a>
+                                    <?php
+                                        }
+                                        ?>
                                 </div>
                                 <!-- Cart -->
                                 <div class="cart">
-                                    <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span class="cart-quantity">(1)</span></span></a>
+                                <a href="cart.php">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <span>Cart <span class="cart-quantity">(<?php echo $totalProduct ?>)</span></span>
+                                </a>
+
                                 </div>
                             </div>
                         </div>
@@ -83,7 +130,7 @@
                     <nav class="classy-navbar justify-content-between" id="alazeaNav">
 
                         <!-- Nav Brand -->
-                        <a href="index.php" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="index.php" class="nav-brand"><img src="img/logo/png/logo-no-background.png" alt="" width="200px"></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -102,37 +149,11 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index.php">Home</a></li>
-                                    <li><a href="about.php">About</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.php">Home</a></li>
-                                            <li><a href="about.php">About</a></li>
-                                            <li><a href="shop.php">Shop</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="shop.php">Shop</a></li>
-                                                    <li><a href="shop-details.php">Shop Details</a></li>
-                                                    <li><a href="cart.php">Shopping Cart</a></li>
-                                                    <li><a href="checkout.php">Checkout</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="portfolio.php">Portfolio</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="portfolio.php">Portfolio</a></li>
-                                                    <li><a href="single-portfolio.php">Portfolio Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="blog.php">Blog</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="blog.php">Blog</a></li>
-                                                    <li><a href="single-post.php">Blog Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.php">Contact</a></li>
-                                        </ul>
-                                    </li>
                                     <li><a href="shop.php">Shop</a></li>
-                                    <li><a href="portfolio.php">Portfolio</a></li>
+                                    <li><a href="gallery.php">Gallery</a></li>
+                                    <li><a href="about.php">About</a></li>
                                     <li><a href="contact.php">Contact</a></li>
+                                    <li><a href="feedback.php">Feedback</a></li>
                                 </ul>
 
                                 <!-- Search Icon -->
@@ -147,9 +168,10 @@
 
                     <!-- Search Form -->
                     <div class="search-form">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
-                            <button type="submit" class="d-none"></button>
+                        <form action="search.php" method="get">
+                            <input type="text" name="str" id="search"
+                                placeholder="Type keywords &amp; press enter...">
+                            <!-- <button type="submit" class="d-none"></button> -->
                         </form>
                         <!-- Close Icon -->
                         <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
@@ -160,7 +182,7 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-         <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" data-backdrop="static" role="dialog">
         <div class="modal-dialog">
 
@@ -192,8 +214,9 @@
                         </div>
                         <!-- Login Form -->
                         <div id="login-form">
-                            <form method="post">
-                                <input type="text" placeholder="Enter your email" name="l_email" id="l_email" autofocus>
+                            <form>
+                                <input type="email" placeholder="Enter your email" name="l_email" id="l_email"
+                                    autofocus>
                                 <p class="help-block text-danger" id="l_email_error" style="padding:0 1rem 0"></p>
 
                                 <input type="password" placeholder="Enter password" name="l_password" id="l_password" />
@@ -213,7 +236,7 @@
 
                         <!-- Signup Form -->
                         <div id="signup-form">
-                            <form method="post">
+                            <form>
                                 <input type="text" name="name" id="name" placeholder="Enter your name" autofocus>
                                 <p class="help-block text-danger" id="name_error" style="padding:0 1rem 0"></p>
 

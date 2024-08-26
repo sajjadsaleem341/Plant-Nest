@@ -91,12 +91,12 @@
 
     // :: 6.0 magnificPopup Active Code
     if ($.fn.magnificPopup) {
-        $('.portfolio-img, .product-img').magnificPopup({
-            gallery: {
-                enabled: true
-            },
-            type: 'image'
-        });
+        // $('.portfolio-img, .product-img').magnificPopup({
+        //     gallery: {
+        //         enabled: true
+        //     },
+        //     type: 'image'
+        // });
         $('.video-icon').magnificPopup({
             type: 'iframe'
         });
@@ -175,7 +175,7 @@
             slide: function (event, ui) {
                 var result = label_result + " " + unit + ui.values[0] + ' - ' + unit + ui.values[1];
                 console.log(t);
-                t.closest('.slider-range').find('.range-price').php(result);
+                t.closest('.slider-range').find('.range-price').html(result);
             }
         });
     })
