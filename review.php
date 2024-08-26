@@ -16,7 +16,7 @@ include "header.php";
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
                         <li class="breadcrumb-item"><a href="#"><i class="fa fa-clipboard-list"></i> Orders</a></li>
-                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-list"></i> Order Details</a></li>
+                        <li class="breadcrumb-item"><a href="#">Order Details</a>
                         <li class="breadcrumb-item active" aria-current="page">Review</li>
                     </ol>
                 </nav>
