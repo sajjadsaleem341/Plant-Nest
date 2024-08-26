@@ -24,6 +24,7 @@ require "functions.php";
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/form.css">
 
+
 </head>
 
 <body>
