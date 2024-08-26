@@ -42,6 +42,8 @@ $totalProduct=$obj->totalProduct();
 
 <body>
     <button hidden id="message_send"></button>
+    <button hidden id="feedback_send"></button>
+    <button hidden id="review_submitted"></button>
     <button hidden id="registration_success"></button>
     <button hidden id="password_update"></button>
     <button hidden id="profile_update"></button>
@@ -107,8 +109,11 @@ $totalProduct=$obj->totalProduct();
                                 </div>
                                 <!-- Cart -->
                                 <div class="cart">
-                                    <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span
-                                                class="cart-quantity">(<?php echo $totalProduct?>)</span></span></a>
+                                <a href="cart.php">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <span>Cart <span class="cart-quantity">(<?php echo $totalProduct ?>)</span></span>
+                                </a>
+
                                 </div>
                             </div>
                         </div>
@@ -144,37 +149,11 @@ $totalProduct=$obj->totalProduct();
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index.php">Home</a></li>
-                                    <li><a href="about.php">About</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.php">Home</a></li>
-                                            <li><a href="about.php">About</a></li>
-                                            <li><a href="shop.php">Shop</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="shop.php">Shop</a></li>
-                                                    <li><a href="product.php">product details</a></li>
-                                                    <li><a href="cart.php">Shopping Cart</a></li>
-                                                    <li><a href="checkout.php">Checkout</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="portfolio.php">Portfolio</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="portfolio.php">Portfolio</a></li>
-                                                    <li><a href="single-portfolio.php">Portfolio Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="blog.php">Blog</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="blog.php">Blog</a></li>
-                                                    <li><a href="single-post.php">Blog Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.php">Contact</a></li>
-                                        </ul>
-                                    </li>
                                     <li><a href="shop.php">Shop</a></li>
-                                    <li><a href="portfolio.php">Portfolio</a></li>
+                                    <li><a href="gallery.php">Gallery</a></li>
+                                    <li><a href="about.php">About</a></li>
                                     <li><a href="contact.php">Contact</a></li>
+                                    <li><a href="feedback.php">Feedback</a></li>
                                 </ul>
 
                                 <!-- Search Icon -->

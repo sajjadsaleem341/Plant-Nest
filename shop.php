@@ -117,14 +117,14 @@ $products = fetch_products_with_categories($con, '', '', '', $sort_query);
                         <div class="widget-desc">
                             <!-- Single Checkbox -->
                             <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                <a href="shop.php" style="color:#6c757d"><label class="" for="customCheck2">All Plants</label></a>
+                                <a href="shop.php" style="color:#6c757d; font-size:15px;"><label class="" for="customCheck2">All Plants</label></a>
                             </div>
                             <?php
                             foreach ($cat_arr as $list) {
                             ?>
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <a href="categories.php?id=<?= $list['Id'] ?>" style="color:#6c757d"><label class="" for="customCheck2"><?= $list['Categories'] ?> </label></a>
+                                    <a href="categories.php?id=<?= $list['Id'] ?>" style="color:#6c757d; font-size:15px;"><label class="" for="customCheck2"><?= $list['Categories'] ?> </label></a>
                                 </div>
                             <?php
                             }
@@ -148,15 +148,6 @@ $products = fetch_products_with_categories($con, '', '', '', $sort_query);
                                     <!-- Product Image -->
                                     <div class="product-img">
                                         <a href="product.php?id=<?= $list['Id'] ?>"><img src="./image/<?= $list['Image'] ?>"></a>
-                                        <!-- Product Tag -->
-                                        <div class="product-tag">
-                                            <a href="#">Hot</a>
-                                        </div>
-                                        <div class="product-meta d-flex">
-                                            <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-                                            <a href="" class="add-to-cart-btn">Add to cart</a>
-                                            <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
-                                        </div>
                                     </div>
                                     <!-- Product Info -->
                                     <div class="product-info mt-15 text-center">

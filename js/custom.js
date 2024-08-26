@@ -121,25 +121,38 @@ function user_login() {
     }
 }
 
-function manage_cart(pid,type){
-	if(type=='update'){
-		var qty=jQuery("#"+pid+"qty").val();
-	}else{
-		var qty=jQuery("#qty").val();
-	}
-	jQuery.ajax({
-		url:'manage_cart.php',
-		type:'post',
-		data:'pid='+pid+'&qty='+qty+'&type='+type,
-		success:function(result){
-			if(type=='update' || type=='remove'){
-				window.location.href=window.location.href;
-			}
-			if(result=='not_avaliable'){
-				alert('Qty Not Available');
-			}else{
-				jQuery('.badge').html(result);
-			}
-		}	
-	});	
+function manage_cart(pid, type) {
+    let qty;
+    if (type === 'update') {
+        qty = jQuery("#" + pid + "qty").val();
+    } else {
+        qty = jQuery("#qty").val();
+    }
+    
+    if (qty <= 0) {
+        alert('Quantity must be greater than zero.');
+        return;
+    }
+
+    jQuery.ajax({
+        url: 'manage_cart.php',
+        type: 'post',
+        data: { pid: pid, qty: qty, type: type },
+        success: function(result) {
+            if (result === 'not_avaliable') {
+                alert('Qty Not Available');
+            } else {
+                // Update the cart quantity badge
+                jQuery('.cart-quantity').html('(' + result + ')');
+                if (type === 'update' || type === 'remove') {
+                    window.location.reload();
+                } else {
+                    jQuery("#registration_success").click();
+                }
+            }
+        },
+        error: function() {
+            alert('An error occurred while processing your request.');
+        }
+    });
 }

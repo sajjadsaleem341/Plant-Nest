@@ -110,14 +110,17 @@ include 'header.php';
                             url: 'send_feedback.php',
                             type: 'post',
                             data: 'name=' + f_name + '&email=' + f_email + '&subject=' + f_subject +
-                                '&message=' + f_message,
+                                '&feedback=' + f_message,
                             success: function(result) {
                                 if (result == 'ThankYou') {
-                                    jQuery("#feedbackForm")[0].reset();
-                                    alert("Thank you for your feedback!");
+                                    jQuery("#feedback_send").click();
                                 }
                             }
                         });
+                        jQuery("#feedback-name").val('');
+                        jQuery("#feedback-email").val('');
+                        jQuery("#feedback-subject").val('');
+                        jQuery("#feedback-message").val('');
                     }
                 }
             </script>

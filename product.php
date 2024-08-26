@@ -113,7 +113,7 @@ if (isset($_SESSION['USER_LOGIN'])) {
                                         onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
                                             class="fa fa-plus" aria-hidden="true"></i></span>
                                 </div>
-                                    <a class="btn alazea-btn ml-15" href="javascript:void(0)" onclick="manage_cart('<?= $get_product['0']['Id']?>','add'); location.reload();"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a>
+                                    <a class="btn alazea-btn ml-15" href="javascript:void(0)" onclick="manage_cart('<?= $get_product['0']['Id']?>','add'); "><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a>
                             </form>
                             <!-- Wishlist -->
                             <div class="wishlist-compare d-flex flex-wrap align-items-center">
@@ -155,7 +155,6 @@ if (isset($_SESSION['USER_LOGIN'])) {
 
                         <div class="products--meta">
                             <p><span>Category:</span> <span><?= $get_product['0']['Categories'] ?></span></p>
-                            <!-- <p><span>Tags:</span> <span>plants, green</span></p> -->
                             <p>
                                 <span>Share on:</span>
                                 <span>
@@ -182,10 +181,6 @@ if (isset($_SESSION['USER_LOGIN'])) {
                         <li class="nav-item">
                             <a href="#description" class="nav-link active" data-toggle="tab" role="tab">Description</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href="#addi-info" class="nav-link" data-toggle="tab" role="tab">Additional
-                                Information</a>
-                        </li> -->
                         <li class="nav-item">
                             <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span
                                     class="text-muted">(1)</span></a>
@@ -198,32 +193,8 @@ if (isset($_SESSION['USER_LOGIN'])) {
                                 <?php
                                     echo $get_product['0']['Description'];
                                 ?>
-                                <!-- <p>Sed a facilisis orci. Curabitur magna urna, varius placerat placerat sodales, pretium
-                                    vitae orci. Aliquam erat volutpat. Cras sit amet suscipit magna. Quisque turpis
-                                    odio, facilisis vel eleifend eu, dignissim ac odio.</p>
-                                <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. In scelerisque augue at
-                                    the moment mattis. Proin vitae arcu sit amet justo sollicitudin tincidunt sit amet
-                                    ut velit.Proin placerat vel augue eget euismod. Phasellus cursus orci eu tellus
-                                    vestibulum, vestibulum urna accumsan. Vestibulum ut ullamcorper sapien. Pellentesque
-                                    molestie, est ac vestibulum eleifend, lorem ipsum mollis ipsum.</p> -->
                             </div>
                         </div>
-                        <!-- <div role="tabpanel" class="tab-pane fade" id="addi-info">
-                            <div class="additional_info_area">
-                                <p>What should I do if I receive a damaged parcel?
-                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit
-                                        impedit similique qui, itaque delectus labore.</span></p>
-                                <p>I have received my order but the wrong item was delivered to me.
-                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quam
-                                        voluptatum beatae harum tempore, ab?</span></p>
-                                <p>Product Receipt and Acceptance Confirmation Process
-                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum
-                                        ducimus, temporibus soluta impedit minus rerum?</span></p>
-                                <p>How do I cancel my order?
-                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum eius
-                                        eum, minima!</span></p>
-                            </div>
-                        </div> -->
                         <div role="tabpanel" class="tab-pane fade" id="reviews">
                             <div class="reviews_area">
                                 <ul>

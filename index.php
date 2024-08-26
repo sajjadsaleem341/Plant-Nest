@@ -241,9 +241,9 @@ include 'header.php'
 </section>
 <!-- ##### About Area End ##### -->
 
-    <!-- ##### Portfolio Area Start ##### -->
-    <?php include 'gallery.php' ?>
-    <!-- ##### Portfolio Area End ##### -->
+    <!-- ##### Gallery Area Start ##### -->
+    <?php include 'portfolio.php' ?>
+    <!-- ##### Gallery Area End ##### -->
 
 <?php
 include 'footer.php'

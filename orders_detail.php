@@ -69,7 +69,8 @@ $order_id=get_safe_value($con,$_GET['id']);
                                product.Id AS p_id, 
                                orders.Address, 
                                orders.City, 
-                               orders.Pincode 
+                               orders.Pincode,
+                               orders.id AS o_id
                         FROM orders_detail
                         INNER JOIN product ON product.Id = orders_detail.Product_Id
                         INNER JOIN orders ON orders.Id = orders_detail.Order_Id
@@ -90,7 +91,7 @@ $order_id=get_safe_value($con,$_GET['id']);
                             <td class="text-center align-middle">$<?= $row['Price'] ?></td>
                             <td class="text-center align-middle"><?= $row['Qty']*$row['Price'] ?></td>
                             <td class="text-center align-middle">
-                                <a href="review.php?id=00123" class="details-icon" style="font-size: 16px;">
+                                <a href="review.php?order_id=<?= $row['o_id'] ?>&product_id=<?= $row['p_id'] ?>" class="details-icon" style="font-size: 16px;">
                                     <i class="fa fa-edit" aria-hidden="true"></i> Write a review
                                 </a>
                             </td>
