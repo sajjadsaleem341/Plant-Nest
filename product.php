@@ -268,7 +268,7 @@ if (isset($_SESSION['USER_LOGIN'])) {
                                 </ul>
                             </div>
 
-                            <div class="submit_a_review_area mt-50">
+                            <!-- <div class="submit_a_review_area mt-50">
                                 <h4>Submit A Review</h4>
                                 <form action="#" method="post">
                                     <div class="row">
@@ -320,7 +320,7 @@ if (isset($_SESSION['USER_LOGIN'])) {
                                         </div>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>
