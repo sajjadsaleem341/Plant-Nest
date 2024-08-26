@@ -4,7 +4,7 @@ require "functions.php";
 require "add_cart_func.php";
 
 // $active = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
-
+$cart_total = 0;
 $sql = "select * from categories";
 $res = mysqli_query($con,$sql);
 $cat_arr=array();
