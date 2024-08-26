@@ -692,7 +692,8 @@ img {
     .single-product-area .product-img img {
       position: relative;
       z-index: 1;
-      width: 100%; }
+      width: 100%;
+    height: 250px; }
     .single-product-area .product-img .product-tag a {
       background-color: #429edf;
       border-radius: 2px;
@@ -1016,6 +1017,14 @@ img {
       text-align: center;
       line-height: 46px;
       font-size: 18px; }
+      .single_product_desc .wishlist-compare button {
+        background-color: #f2f4f5;
+        display: inline-block;
+        width: 46px;
+        height: 46px;
+        text-align: center;
+        line-height: 46px;
+        font-size: 18px; }
   .single_product_desc .products--meta {
     position: relative;
     z-index: 1;

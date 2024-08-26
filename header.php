@@ -89,9 +89,9 @@ $totalProduct=$obj->totalProduct();
                                                 aria-expanded="false"><a style="margin:auto"><i class="fa fa-user"
                                                         aria-hidden="true"></i></a><?= $_SESSION['USER_NAME'] ?></button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">Profile</a>
-                                                <a class="dropdown-item" href="#">Orders</a>
-                                                <a class="dropdown-item" href="#">Wishlist</a>
+                                                <a class="dropdown-item" href="profile.php">Profile</a>
+                                                <a class="dropdown-item" href="order.php">Orders</a>
+                                                <a class="dropdown-item" href="wishlist.php">Wishlist</a>
                                                 <a class="dropdown-item" href="logout.php">Logout</a>
                                             </div>
                                         </div>
