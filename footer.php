@@ -88,7 +88,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <ul>
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="about.php">About</a></li>
-                                    <li><a href="portfolio.php">Gallery</a></li>
+                                    <li><a href="gallery.php">Gallery</a></li>
                                     <li><a href="blog.php">Blog</a></li>
                                     <li><a href="contact.php">Contact</a></li>
                                 </ul>

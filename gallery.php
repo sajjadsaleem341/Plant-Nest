@@ -1,4 +1,4 @@
-<section class="alazea-portfolio-area section-padding-100-0">
+<section class="alazea-Gallery-area section-padding-100-0">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -19,8 +19,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="alazea-portfolio-filter">
-                    <div class="portfolio-filter">
+                <div class="alazea-Gallery-filter">
+                    <div class="Gallery-filter">
                         <button class="btn active" data-filter="*">All</button>
                         <?php foreach($categories as $cat) { ?>
                             <button class="btn" data-filter=".cat-<?= $cat['Id'] ?>"><?= $cat['Categories'] ?></button>
@@ -33,15 +33,15 @@
             </div>
         </div>
 
-        <div class="row alazea-portfolio">
+        <div class="row alazea-Gallery">
             <?php foreach($galleryProducts as $product) { ?>
-                <!-- Single Portfolio Area -->
-                <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item cat-<?= $product['Category_Id'] ?> home-design wow fadeInUp" data-wow-delay="100ms">
-                    <!-- Portfolio Thumbnail -->
-                    <div class="portfolio-thumbnail bg-img" style="background-image: url(image/<?= $product['Image'] ?>);"></div>
-                    <!-- Portfolio Hover Text -->
-                    <div class="portfolio-hover-overlay">
-                        <a href="product.php?id=<?= $product['Id'] ?>" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 1">
+                <!-- Single Gallery Area -->
+                <div class="col-12 col-sm-6 col-lg-3 single_Gallery_item cat-<?= $product['Category_Id'] ?> home-design wow fadeInUp" data-wow-delay="100ms">
+                    <!-- Gallery Thumbnail -->
+                    <div class="Gallery-thumbnail bg-img" style="background-image: url(image/<?= $product['Image'] ?>);"></div>
+                    <!-- Gallery Hover Text -->
+                    <div class="Gallery-hover-overlay">
+                        <a href="product.php?id=<?= $product['Id'] ?>" class="Gallery-img d-flex align-items-center justify-content-center" title="Gallery 1">
                             <div class="port-hover-text">
                                 <h3><?= $product['Name'] ?></h3>
                                 <h5><?= $product['Categories'] ?></h5>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             <?php } ?>
-            <!-- / Single Portfolio Area -->
+            <!-- / Single Gallery Area -->
 
         </div>
     </div>

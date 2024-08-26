@@ -149,10 +149,10 @@ include 'header.php';
                                 }
                             }
                         });
-                        jQuery("#c_name").val('');
-                        jQuery("#c_email").val('');
-                        jQuery("#c_subject").val('');
-                        jQuery("#c_message").val('');
+                        jQuery("#contact-name").val('');
+                        jQuery("#contact-email").val('');
+                        jQuery("#contact-subject").val('');
+                        jQuery("#contact-message").val('');
                     }
                 }
             </script>

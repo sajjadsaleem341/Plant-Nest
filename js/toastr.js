@@ -8,6 +8,22 @@ $("#message_send").click(function () {
   });
 });
 
+$("#review_submitted").click(function () {
+  iziToast.success({
+    // title: 'Hello, world!',
+    message: 'Review Submitted successfully',
+    position: 'topRight'
+  });
+});
+
+$("#feedback_send").click(function () {
+  iziToast.success({
+    // title: 'Hello, world!',
+    message: 'Feedback Submitted successfully',
+    position: 'topRight'
+  });
+});
+
 $("#post_update").click(function () {
   iziToast.success({
     // title: 'Hello, world!',

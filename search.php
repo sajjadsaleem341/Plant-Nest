@@ -77,16 +77,14 @@ while($row=mysqli_fetch_assoc($res)){
                         <div class="widget-desc">
                             <!-- Single Checkbox -->
                             <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                            <a href="shop.php" style="color:#6c757d" ><label class="" for="customCheck2">All Plants <span
-                            class="text-muted">(20)</span></label></a>
+                            <a href="shop.php" style="color:#6c757d; font-size: 15px;" ><label class="" for="customCheck2">All Plants</label></a>
                             </div>
                             <?php
                         foreach($cat_arr as $list){
                         ?>
                             <!-- Single Checkbox -->
                             <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                <a href="categories.php?id=<?= $list['Id']?>" style="color:#6c757d"><label class="" for="customCheck2"><?= $list['Categories']?> <span
-                                class="text-muted">(20)</span></label></a>
+                                <a href="categories.php?id=<?= $list['Id']?>" style="color:#6c757d; font-size: 15px;"><label class="" for="customCheck2"><?= $list['Categories']?></label></a>
                             </div>
                             <?php
                         }
