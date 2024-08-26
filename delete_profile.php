@@ -1,5 +1,5 @@
 <?php
-include "db_connect.php"; // Include your database connection file
+include "config.php"; // Include your database connection file
 session_start(); // Start the session
 
 // Check if 'id' is set in the URL
