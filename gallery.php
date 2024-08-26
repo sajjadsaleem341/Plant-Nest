@@ -41,7 +41,7 @@
                     <div class="portfolio-thumbnail bg-img" style="background-image: url(image/<?= $product['Image'] ?>);"></div>
                     <!-- Portfolio Hover Text -->
                     <div class="portfolio-hover-overlay">
-                        <a href="/product.php/<?= $product['Id'] ?>" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 1">
+                        <a href="product.php?id=<?= $product['Id'] ?>" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 1">
                             <div class="port-hover-text">
                                 <h3><?= $product['Name'] ?></h3>
                                 <h5><?= $product['Categories'] ?></h5>
