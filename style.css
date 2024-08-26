@@ -315,6 +315,10 @@ img {
   background-color: #f2f4f5;
 }
 
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 /* :: 3.7.0 ScrollUp */
 #scrollUp {
   background-color: #70c745;
