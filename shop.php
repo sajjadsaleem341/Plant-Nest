@@ -1,11 +1,59 @@
 <?php
 include 'header.php';
-$sql = "select * from categories";
-$res = mysqli_query($con,$sql);
-$cat_arr=array();
-while($row=mysqli_fetch_assoc($res)){
-    $cat_arr[]=$row;
+// Get the selected sorting option
+$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : '';
+
+// Define the sorting query
+$sort_query = '';
+if ($sort_by == 'name_asc') {
+    $sort_query = "ORDER BY Name ASC";
+} elseif ($sort_by == 'price_asc') {
+    $sort_query = "ORDER BY Price ASC";
+} elseif ($sort_by == 'price_desc') {
+    $sort_query = "ORDER BY Price DESC";
+} elseif ($sort_by == 'newest') {
+    $sort_query = "ORDER BY Id DESC";
 }
+
+// Fetch categories
+$sql = "SELECT * FROM categories";
+$res = mysqli_query($con, $sql);
+$cat_arr = array();
+while ($row = mysqli_fetch_assoc($res)) {
+    $cat_arr[] = $row;
+}
+
+function fetch_products_with_categories($con, $type = '', $limit = '', $cat_id = '', $sort_query = '')
+{
+    // Fetch product data
+    $sql = "SELECT product.*, categories.Categories AS CategoryName 
+            FROM product
+            JOIN categories ON product.category_id = categories.Id
+            WHERE product.status=1";
+
+    if ($cat_id != '') {
+        $sql .= " AND product.categories_id=$cat_id";
+    }
+
+    // Append the sorting query
+    if ($sort_query != '') {
+        $sql .= " " . $sort_query;
+    }
+
+    if ($limit != '') {
+        $sql .= " LIMIT $limit";
+    }
+
+    $res = mysqli_query($con, $sql);
+    $data = array();
+    while ($row = mysqli_fetch_assoc($res)) {
+        $data[] = $row;
+    }
+    return $data;
+}
+// Fetch products with categories
+$products = fetch_products_with_categories($con, '', '', '', $sort_query);
+
 ?>
 <!-- ##### Breadcrumb Area Start ##### -->
 <div class="breadcrumb-area">
@@ -43,14 +91,16 @@ while($row=mysqli_fetch_assoc($res)){
                     </div>
                     <!-- Search by Terms -->
                     <div class="search_by_terms">
-                        <form action="#" method="post" class="form-inline">
-                            <select class="custom-select widget-title">
-                                <option selected>Sort By Newest</option>
-                                <option value="1">Short by A-Z</option>
-                                <option value="2">Short by Sales</option>
-                                <option value="3">Short by Ratings</option>
+                        <form action="shop.php" method="get" class="form-inline">
+                            <select name="sort_by" class="custom-select widget-title" onchange="this.form.submit()">
+                                <option value="">Sort by</option>
+                                <option value="name_asc" <?= $sort_by == 'name_asc' ? 'selected' : '' ?>>A-Z</option>
+                                <option value="price_asc" <?= $sort_by == 'price_asc' ? 'selected' : '' ?>>Price: Low to High</option>
+                                <option value="price_desc" <?= $sort_by == 'price_desc' ? 'selected' : '' ?>>Price: High to Low</option>
+                                <option value="newest" <?= $sort_by == 'newest' ? 'selected' : '' ?>>Newest</option>
                             </select>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -67,20 +117,20 @@ while($row=mysqli_fetch_assoc($res)){
                         <div class="widget-desc">
                             <!-- Single Checkbox -->
                             <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                            <a href="shop.php" style="color:#6c757d" ><label class="" for="customCheck2">All Plants <span
-                            class="text-muted cursor-pointer">(20)</span></label></a>
+                                <a href="shop.php" style="color:#6c757d"><label class="" for="customCheck2">All Plants <span
+                                            class="text-muted">(20)</span></label></a>
                             </div>
                             <?php
-                        foreach($cat_arr as $list){
-                        ?>
-                            <!-- Single Checkbox -->
-                            <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                <a href="categories.php?id=<?= $list['Id']?>" style="color:#6c757d" ><label class="" for="customCheck2"><?= $list['Categories']?> <span
-                                class="text-muted cursor-pointer">(20)</span></label></a>
-                            </div>
+                            foreach ($cat_arr as $list) {
+                            ?>
+                                <!-- Single Checkbox -->
+                                <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
+                                    <a href="categories.php?id=<?= $list['Id'] ?>" style="color:#6c757d"><label class="" for="customCheck2"><?= $list['Categories'] ?> <span
+                                                class="text-muted">(20)</span></label></a>
+                                </div>
                             <?php
-                        }
-                        ?>
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -93,39 +143,37 @@ while($row=mysqli_fetch_assoc($res)){
 
                         <!-- Single Product Area -->
                         <?php
-                    $get_product=get_product($con,'','','');
-                    foreach($get_product as $list){
-                    ?>
-                        <div class="col-12 col-sm-6 col-lg-4">
-                            <div class="single-product-area mb-50">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <a href="product.php?id=<?= $list['Id']?>"><img src="./image/<?= $list['Image'] ?>"></a>
-                                    <!-- Product Tag -->
-                                    <div class="product-tag">
-                                        <a href="#">Hot</a>
+                        foreach ($products as $list) {
+                        ?>
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-area mb-50">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <a href="product.php?id=<?= $list['Id'] ?>"><img src="./image/<?= $list['Image'] ?>"></a>
+                                        <!-- Product Tag -->
+                                        <div class="product-tag">
+                                            <a href="#">Hot</a>
+                                        </div>
+                                        <div class="product-meta d-flex">
+                                            <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
+                                            <a href="" class="add-to-cart-btn">Add to cart</a>
+                                            <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
+                                        </div>
                                     </div>
-                                    <div class="product-meta d-flex justify-content-center">
-                                        <a href="" class="add-to-cart-btn">Add to cart</a>
-                                        <!-- <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-                                        <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a> -->
+                                    <!-- Product Info -->
+                                    <div class="product-info mt-15 text-center">
+                                        <a href="product.php?id=<?= $list['Id'] ?>">
+                                            <p><?= $list['Name'] ?></p>
+                                        </a>
+                                        <h6>$<?= $list['Price'] ?></h6>
                                     </div>
-                                </div>
-                                <!-- Product Info -->
-                                <div class="product-info mt-15 text-center">
-                                    <a href="product.php?id=<?= $list['Id']?>">
-                                        <p><?= $list['Name']?></p>
-                                    </a>
-                                    <h6>$<?= $list['Price']?></h6>
                                 </div>
                             </div>
-                        </div>
 
                         <?php
                         }
-                    ?>
+                        ?>
 
-                        
                     </div>
 
                     <!-- Pagination -->
