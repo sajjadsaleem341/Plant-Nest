@@ -1,4 +1,4 @@
-<section class="alazea-portfolio-area section-padding-100-0">
+<section class="alazea-portfolio-area section-padding-100-0 container mb-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -34,22 +34,23 @@
         </div>
 
         <div class="row alazea-portfolio">
-            <?php foreach($galleryProducts as $product) { ?>
-                <!-- Single Portfolio Area -->
-                <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item cat-<?= $product['Category_Id'] ?> home-design wow fadeInUp" data-wow-delay="100ms">
-                    <!-- Portfolio Thumbnail -->
-                    <div class="portfolio-thumbnail bg-img" style="background-image: url(image/<?= $product['Image'] ?>);"></div>
-                    <!-- Portfolio Hover Text -->
-                    <div class="portfolio-hover-overlay">
-                        <a href="product.php?id=<?= $product['Id'] ?>" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 1">
-                            <div class="port-hover-text">
-                                <h3><?= $product['Name'] ?></h3>
-                                <h5><?= $product['Categories'] ?></h5>
-                            </div>
-                        </a>
-                    </div>
+        <?php foreach($galleryProducts as $product) { ?>
+    <!-- Single Portfolio Area -->
+    <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item cat-<?= $product['Category_Id'] ?> home-design wow fadeInUp" data-wow-delay="100ms">
+        <!-- Portfolio Thumbnail -->
+        <div class="portfolio-thumbnail bg-img" style="background-image: url(image/<?= $product['Image'] ?>);"></div>
+        <!-- Portfolio Hover Text -->
+        <div class="portfolio-hover-overlay">
+            <a href="product.php?id=<?= $product['Id'] ?>" class="portfolio-img d-flex align-items-center justify-content-center" title="<?= $product['Name'] ?>">
+                <div class="port-hover-text">
+                    <h3><?= $product['Name'] ?></h3>
+                    <h5><?= $product['Categories'] ?></h5>
                 </div>
-            <?php } ?>
+            </a>
+        </div>
+    </div>
+<?php } ?>
+
             <!-- / Single Portfolio Area -->
 
         </div>
