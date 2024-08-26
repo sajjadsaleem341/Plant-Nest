@@ -27,7 +27,7 @@ $totalProduct=$obj->totalProduct();
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Alazea - Gardening & Landscaping HTML Template</title>
+    <title>Plant Nest - Live With Green</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -125,7 +125,7 @@ $totalProduct=$obj->totalProduct();
                     <nav class="classy-navbar justify-content-between" id="alazeaNav">
 
                         <!-- Nav Brand -->
-                        <a href="index.php" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="index.php" class="nav-brand"><img src="img/logo/png/logo-no-background.png" alt="" width="200px"></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
