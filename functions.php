@@ -39,6 +39,36 @@ function get_product($con,$limit='',$cat_id='',$product_id='',$search_str='', bo
     return $data;
 }
 
+function get_category($con, $limit='', $cat_id='', $search_str='', bool $getQuery=false) {
+    $sql = "SELECT * FROM categories WHERE Status=1";  // where 1=1 added to add more WHERE querie below
+
+    if (!empty($cat_id)) {
+        $sql .= " AND id = '".mysqli_real_escape_string($con, $cat_id)."'";
+    }
+
+    if (!empty($search_str)) {
+        $search_str = mysqli_real_escape_string($con, $search_str);
+        $sql .= " AND (name LIKE '%$search_str%' OR Categories LIKE '%$search_str%')";
+    }
+
+    if (!empty($limit)) {
+        $sql .= " LIMIT $limit";
+    }
+
+    if ($getQuery) {
+        return $sql;
+    }
+
+    $res = mysqli_query($con, $sql);
+
+    $categories = [];
+    while ($row=mysqli_fetch_assoc($res)) {
+        $categories[] = $row;
+    }
+
+    return $categories;
+}
+
 function productSoldQtyByProductId($con,$pid){
 	$sql="select sum(orders_detail.Qty) as Qty from orders_detail,orders where orders.Id=orders_detail.Order_Id and orders_detail.Product_Id=$pid and orders.Order_Status!=4";
 	$res=mysqli_query($con,$sql);
