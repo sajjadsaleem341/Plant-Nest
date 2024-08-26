@@ -242,7 +242,7 @@ include 'header.php'
 <!-- ##### About Area End ##### -->
 
     <!-- ##### Gallery Area Start ##### -->
-    <?php include 'gallery.php' ?>
+    <?php include 'portfolio.php' ?>
     <!-- ##### Gallery Area End ##### -->
 
 <?php
