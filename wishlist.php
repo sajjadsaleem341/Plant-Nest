@@ -108,24 +108,24 @@ function removeFromWishlist(productId) {
 <style>
     .wishlist-table {
         border: none;
-        border-radius: 10px; /* Rounded corners */
-        overflow: hidden; /* Ensures rounded corners are visible */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a raised effect */
-        background-color: #fff; /* White background for the table */
+        border-radius: 10px; 
+        overflow: hidden; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        background-color: #fff; 
     }
 
     .wishlist-table thead {
-        background-color: #f8f9fa; /* Light background color for table header */
-        border-bottom: 2px solid #dee2e6; /* Slightly darker border at the bottom of the header */
+        background-color: #f8f9fa; 
+        border-bottom: 2px solid #dee2e6; 
     }
 
     .wishlist-table tbody tr {
-        border-bottom: 1px solid #dee2e6; /* Bottom border for each row */
-        transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        border-bottom: 1px solid #dee2e6; 
+        transition: background-color 0.3s ease; 
     }
 
     .wishlist-table tbody tr:hover {
-        background-color: #f1f1f1; /* Light grey background on hover for rows */
+        background-color: #f1f1f1; 
     }
 
     .wishlist-table th,
@@ -137,20 +137,20 @@ function removeFromWishlist(productId) {
 
     /* Style for the remove icon */
     .remove-icon {
-        color: grey; /* Default grey color */
-        text-decoration: none; /* Remove underline */
-        font-weight: normal; /* Make the icon less bold */
-        transition: color 0.3s ease; /* Smooth transition for color change */
+        color: grey; 
+        text-decoration: none;
+        font-weight: normal; 
+        transition: color 0.3s ease; 
     }
 
     /* Hover effect for the remove icon */
     .remove-icon:hover {
-        color: red; /* Change color to red on hover */
+        color: red; 
     }
 
     /* Make Font Awesome icons less bold by adjusting the font weight */
     .fa-times, .fa-shopping-cart {
-        font-weight: normal; /* Make icons less bold */
+        font-weight: normal;
     }
 </style>
 
