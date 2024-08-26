@@ -14,7 +14,7 @@ else{
     <!-- Top Breadcrumb Area -->
     <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
         style="background-image: url(img/bg-img/24.jpg);">
-        <h2>product details</h2>
+        <h2>Product Details</h2>
     </div>
 
     <div class="container">
@@ -22,8 +22,8 @@ else{
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item"><a href="/index.php"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="/shop.php">Shop</a></li>
                         <li class="breadcrumb-item active" aria-current="page">product details</li>
                     </ol>
                 </nav>
@@ -109,9 +109,9 @@ else{
                                     <a class="btn alazea-btn ml-15" href="javascript:void(0)" onclick="manage_cart('<?= $get_product['0']['Id']?>','add')"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a>
                             </form>
                             <!-- Wishlist & Compare -->
-                            <div class="wishlist-compare d-flex flex-wrap align-items-center">
+                            <!-- <div class="wishlist-compare d-flex flex-wrap align-items-center">
                                 <a href="#" class="wishlist-btn ml-15"><i class="icon_heart_alt"></i></a>
-                            </div>
+                            </div> -->
                         </div>
 
                         <?php
@@ -120,7 +120,7 @@ else{
 
                         <div class="products--meta">
                             <p><span>Category:</span> <span><?= $get_product['0']['Categories'] ?></span></p>
-                            <p><span>Tags:</span> <span>plants, green, cactus </span></p>
+                            <!-- <p><span>Tags:</span> <span>plants, green</span></p> -->
                             <p>
                                 <span>Share on:</span>
                                 <span>
@@ -147,10 +147,10 @@ else{
                         <li class="nav-item">
                             <a href="#description" class="nav-link active" data-toggle="tab" role="tab">Description</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="#addi-info" class="nav-link" data-toggle="tab" role="tab">Additional
                                 Information</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span
                                     class="text-muted">(1)</span></a>
@@ -160,17 +160,20 @@ else{
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade show active" id="description">
                             <div class="description_area">
-                                <p>Sed a facilisis orci. Curabitur magna urna, varius placerat placerat sodales, pretium
+                                <?php
+                                    echo $get_product['0']['Description'];
+                                ?>
+                                <!-- <p>Sed a facilisis orci. Curabitur magna urna, varius placerat placerat sodales, pretium
                                     vitae orci. Aliquam erat volutpat. Cras sit amet suscipit magna. Quisque turpis
                                     odio, facilisis vel eleifend eu, dignissim ac odio.</p>
                                 <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. In scelerisque augue at
                                     the moment mattis. Proin vitae arcu sit amet justo sollicitudin tincidunt sit amet
                                     ut velit.Proin placerat vel augue eget euismod. Phasellus cursus orci eu tellus
                                     vestibulum, vestibulum urna accumsan. Vestibulum ut ullamcorper sapien. Pellentesque
-                                    molestie, est ac vestibulum eleifend, lorem ipsum mollis ipsum.</p>
+                                    molestie, est ac vestibulum eleifend, lorem ipsum mollis ipsum.</p> -->
                             </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="addi-info">
+                        <!-- <div role="tabpanel" class="tab-pane fade" id="addi-info">
                             <div class="additional_info_area">
                                 <p>What should I do if I receive a damaged parcel?
                                     <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit
@@ -185,7 +188,7 @@ else{
                                     <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum eius
                                         eum, minima!</span></p>
                             </div>
-                        </div>
+                        </div> -->
                         <div role="tabpanel" class="tab-pane fade" id="reviews">
                             <div class="reviews_area">
                                 <ul>
@@ -233,7 +236,7 @@ else{
                                 </ul>
                             </div>
 
-                            <div class="submit_a_review_area mt-50">
+                            <!-- <div class="submit_a_review_area mt-50">
                                 <h4>Submit A Review</h4>
                                 <form action="#" method="post">
                                     <div class="row">
@@ -285,7 +288,7 @@ else{
                                         </div>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>
@@ -296,8 +299,13 @@ else{
 </section>
 <!-- ##### Single Product Details Area End ##### -->
 
+
+<?php
+    $relatedProducts = get_product($con, 4, $get_product['0']['Category_Id']);
+?>
+
 <!-- ##### Related Product Area Start ##### -->
-<div class="related-products-area">
+<div class="related-products-area <?php if (count($relatedProducts) <= 0) echo 'd-none'; ?>">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -309,103 +317,33 @@ else{
         </div>
 
         <div class="row">
-
-            <!-- Single Product Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-product-area mb-100">
-                    <!-- Product Image -->
-                    <div class="product-img">
-                        <a href="product.php"><img src="img/bg-img/40.png" alt=""></a>
-                        <!-- Product Tag -->
-                        <div class="product-tag">
-                            <a href="#">Hot</a>
+            <?php foreach($relatedProducts as $product) { ?>
+                <!-- Single Product Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-product-area mb-100">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <a href="product.php"><img src="/image/<?= $product['Image'] ?>" alt=""></a>
+                            <!-- Product Tag -->
+                            <div class="product-tag">
+                                <a href="#">Hot</a>
+                            </div>
+                            <div class="product-meta d-flex justify-content-center">
+                                <a href="cart.php" class="add-to-cart-btn">Add to cart</a>
+                                <!-- <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
+                                <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a> -->
+                            </div>
                         </div>
-                        <div class="product-meta d-flex justify-content-center">
-                            <a href="cart.php" class="add-to-cart-btn">Add to cart</a>
-                            <!-- <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-                            <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a> -->
+                        <!-- Product Info -->
+                        <div class="product-info mt-15 text-center">
+                            <a href="product.php?id=<?= $product['Id'] ?>">
+                                <p><?= $product['Name'] ?></p>
+                            </a>
+                            <h6>$<?= $product['Price'] ?></h6>
                         </div>
-                    </div>
-                    <!-- Product Info -->
-                    <div class="product-info mt-15 text-center">
-                        <a href="product.php">
-                            <p>Cactus Flower</p>
-                        </a>
-                        <h6>$10.99</h6>
                     </div>
                 </div>
-            </div>
-
-            <!-- Single Product Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-product-area mb-100">
-                    <!-- Product Image -->
-                    <div class="product-img">
-                        <a href="product.php"><img src="img/bg-img/41.png" alt=""></a>
-                        <div class="product-meta d-flex">
-                            <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-                            <a href="cart.php" class="add-to-cart-btn">Add to cart</a>
-                            <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
-                        </div>
-                    </div>
-                    <!-- Product Info -->
-                    <div class="product-info mt-15 text-center">
-                        <a href="product.php">
-                            <p>Cactus Flower</p>
-                        </a>
-                        <h6>$10.99</h6>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Product Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-product-area mb-100">
-                    <!-- Product Image -->
-                    <div class="product-img">
-                        <a href="product.php"><img src="img/bg-img/42.png" alt=""></a>
-                        <div class="product-meta d-flex">
-                            <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-                            <a href="cart.php" class="add-to-cart-btn">Add to cart</a>
-                            <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
-                        </div>
-                    </div>
-                    <!-- Product Info -->
-                    <div class="product-info mt-15 text-center">
-                        <a href="product.php">
-                            <p>Cactus Flower</p>
-                        </a>
-                        <h6>$10.99</h6>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Product Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-product-area mb-100">
-                    <!-- Product Image -->
-                    <div class="product-img">
-                        <a href="product.php"><img src="img/bg-img/43.png" alt=""></a>
-                        <!-- Product Tag -->
-                        <div class="product-tag sale-tag">
-                            <a href="#">Hot</a>
-                        </div>
-                        <div class="product-meta d-flex">
-                            <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-                            <a href="cart.php" class="add-to-cart-btn">Add to cart</a>
-                            <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
-                        </div>
-                    </div>
-                    <!-- Product Info -->
-                    <div class="product-info mt-15 text-center">
-                        <a href="product.php">
-                            <p>Cactus Flower</p>
-                        </a>
-                        <h6>$10.99</h6>
-                    </div>
-                </div>
-            </div>
-
+            <?php } ?>
         </div>
     </div>
 </div>
