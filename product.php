@@ -44,9 +44,7 @@ else{
                         <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <a class="product-img" href="img/bg-img/49.jpg" title="Product Image">
-                                        <img class="d-block w-100" src="img/bg-img/49.jpg" alt="1">
-                                    </a>
+                                <img class="d-block w-100" src="./image/<?= $get_product['0']['Image'] ?>" alt="1">
                                 </div>
                             </div>
                         </div>
@@ -106,7 +104,7 @@ else{
                                         onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
                                             class="fa fa-plus" aria-hidden="true"></i></span>
                                 </div>
-                                    <a class="btn alazea-btn ml-15" href="javascript:void(0)" onclick="manage_cart('<?= $get_product['0']['Id']?>','add')"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a>
+                                    <a class="btn alazea-btn ml-15" href="javascript:void(0)" onclick="manage_cart('<?= $get_product['0']['Id']?>','add'); location.reload();"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a>
                             </form>
                             <!-- Wishlist & Compare -->
                             <!-- <div class="wishlist-compare d-flex flex-wrap align-items-center">

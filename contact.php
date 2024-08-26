@@ -1,6 +1,7 @@
 <?php
 include 'header.php';
 ?>
+
 <!-- ##### Breadcrumb Area Start ##### -->
 <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
@@ -143,7 +144,7 @@ include 'header.php';
                             data: 'name=' + c_name + '&email=' + c_email + '&subject=' + c_subject +
                                 '&message=' + c_message,
                             success: function(result) {
-                                if (result == 'Thank You') {
+                                if (result == 'ThankYou') {
                                     jQuery("#message_send").click();
                                 }
                             }
@@ -168,6 +169,7 @@ include 'header.php';
     </div>
 </section>
 <!-- ##### Contact Area End ##### -->
+
 <?php
 include 'footer.php';
 ?>
