@@ -40,22 +40,31 @@ include 'header.php';
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php
+						if(isset($_SESSION['cart'])){
+							$cart_total=0;
+							foreach($_SESSION['cart'] as $key=>$val){
+							$productArr=get_product($con,'','',$key);
+							$image=$productArr[0]['Image'];
+                            $pname=$productArr[0]['Name'];
+							$price=$productArr[0]['Price'];
+							$qty=$val['qty'];
+                            $cart_total=$cart_total+($price*$qty);
+						?>
                                 <tr>
                                     <td class="cart_product_img">
-                                        <a href="#"><img src="img/bg-img/34.jpg" alt="Product"></a>
-                                        <h5>Recuerdos Plant</h5>
+                                        <a href="#"><img src="./image/<?= $image ?>" alt="Product"></a>
+                                        <h5><?= $pname?></h5>
                                     </td>
-                                    <td class="qty">
-                                        <div class="quantity">
-                                            <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="1">
-                                            <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                        </div>
-                                    </td>
-                                    <td class="price"><span>$9.99</span></td>
-                                    <td class="total_price"><span>$9.99</span></td>
-                                    <td class="action"><a href="#"><i class="icon_close"></i></a></td>
+                                    <td class="price"><span><?= $qty?></span></td>
+                                    <td class="price"><span>$<?= $price?></span></td>
+                                    <td class="total_price"><span>$<?= $qty*$price ?></span></td>
+                                    <td class="action"><a href="javascript:void(0)" onclick="manage_cart('<?php echo $key?>','remove')"><i class="icon_close"></i></a></td>
                                 </tr>
+                                <?php
+                            }
+                        }
+                        ?>
                             </tbody>
                         </table>
                     </div>
@@ -64,49 +73,31 @@ include 'header.php';
 
             <div class="row">
 
-                <!-- Coupon Discount -->
-                <div class="col-12 col-lg-6">
-                    <div class="coupon-discount mt-70">
-                        <h5>COUPON DISCOUNT</h5>
-                        <p>Coupons can be applied in the cart prior to checkout. Add an eligible item from the booth of the seller that created the coupon code to your cart. Click the green "Apply code" button to add the coupon to your order. The order total will update to indicate the savings specific to the coupon code entered.</p>
-                        <form action="#" method="post">
-                            <input type="text" name="coupon-code" placeholder="Enter your coupon code">
-                            <button type="submit">APPLY COUPON</button>
-                        </form>
-                    </div>
-                </div>
-
                 <!-- Cart Totals -->
                 <div class="col-12 col-lg-6">
                     <div class="cart-totals-area mt-70">
                         <h5 class="title--">Cart Total</h5>
                         <div class="subtotal d-flex justify-content-between">
                             <h5>Subtotal</h5>
-                            <h5>$9.99</h5>
+                            <h5>$<?= $cart_total ?></h5>
                         </div>
-                        <div class="shipping d-flex justify-content-between">
+                        <div class="subtotal d-flex justify-content-between">
                             <h5>Shipping</h5>
-                            <div class="shipping-address">
-                                <form action="#" method="post">
-                                    <select class="custom-select">
-                                      <option selected>Country</option>
-                                      <option value="1">USA</option>
-                                      <option value="2">Latvia</option>
-                                      <option value="3">Japan</option>
-                                      <option value="4">Bangladesh</option>
-                                    </select>
-                                    <input type="text" name="shipping-text" id="shipping-text" placeholder="State">
-                                    <input type="text" name="shipping-zip" id="shipping-zip" placeholder="ZIP">
-                                    <button type="submit">Update Total</button>
-                                </form>
-                            </div>
+                            <h5>$<?= round($cart_total*2/100) ?></h5>
                         </div>
                         <div class="total d-flex justify-content-between">
                             <h5>Total</h5>
-                            <h5>$9.99</h5>
+                            <h5>$<?= round($cart_total * 2 / 100 + $cart_total) ?></h5>
                         </div>
                         <div class="checkout-btn">
-                            <a href="#" class="btn alazea-btn w-100">PROCEED TO CHECKOUT</a>
+                        <?php
+                        if(!isset($_SESSION['USER_LOGIN'])){
+                            echo '<a href="#myModal" data-toggle="modal" class="btn alazea-btn w-100">PROCEED TO CHECKOUT</a>';
+                        }
+                        else{
+                            echo '<a href="checkout.php" class="btn alazea-btn w-100">PROCEED TO CHECKOUT</a>';
+                        }
+                        ?>
                         </div>
                     </div>
                 </div>

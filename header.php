@@ -1,6 +1,20 @@
 <?php
 require "config.php";
 require "functions.php";
+require "add_cart_func.php";
+
+// $active = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
+
+$sql = "select * from categories";
+$res = mysqli_query($con,$sql);
+$cat_arr=array();
+while($row=mysqli_fetch_assoc($res)){
+    $cat_arr[]=$row;
+}
+
+$obj=new add_to_cart();
+$totalProduct=$obj->totalProduct();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,12 +42,10 @@ require "functions.php";
 
 <body>
     <button hidden id="message_send"></button>
-    <button hidden id="post_update"></button>
     <button hidden id="registration_success"></button>
     <button hidden id="password_update"></button>
     <button hidden id="profile_update"></button>
     <button hidden id="upload"></button>
-    <button hidden id="add_post"></button>
     <button hidden id="reset_link"></button>
     <button hidden id="reset_password"></button>
     <!-- Preloader -->
@@ -95,8 +107,8 @@ require "functions.php";
                                 </div>
                                 <!-- Cart -->
                                 <div class="cart">
-                                    <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span
-                                                class="cart-quantity">(1)</span></span></a>
+                                    <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span
+                                                class="cart-quantity">(<?php echo $totalProduct?>)</span></span></a>
                                 </div>
                             </div>
                         </div>
@@ -177,10 +189,10 @@ require "functions.php";
 
                     <!-- Search Form -->
                     <div class="search-form">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search"
+                        <form action="search.php" method="get">
+                            <input type="text" name="str" id="search"
                                 placeholder="Type keywords &amp; press enter...">
-                            <button type="submit" class="d-none"></button>
+                            <!-- <button type="submit" class="d-none"></button> -->
                         </form>
                         <!-- Close Icon -->
                         <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
