@@ -45,11 +45,12 @@ $totalProduct=$obj->totalProduct();
     <button hidden id="feedback_send"></button>
     <button hidden id="review_submitted"></button>
     <button hidden id="registration_success"></button>
-    <button hidden id="password_update"></button>
-    <button hidden id="profile_update"></button>
+    <button hidden id="cart_add"></button>
+    <!-- <button hidden id="password_update"></button> -->
+    <!-- <button hidden id="profile_update"></button>
     <button hidden id="upload"></button>
     <button hidden id="reset_link"></button>
-    <button hidden id="reset_password"></button>
+    <button hidden id="reset_password"></button> -->
     <!-- Preloader -->
     <!-- <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-circle"></div>

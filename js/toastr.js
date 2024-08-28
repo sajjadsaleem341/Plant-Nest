@@ -23,6 +23,13 @@ $("#feedback_send").click(function () {
     position: 'topRight'
   });
 });
+$("#cart_add").click(function () {
+  iziToast.success({
+    // title: 'Hello, world!',
+    message: 'Product added to cart successfully',
+    position: 'topRight'
+  });
+});
 
 $("#post_update").click(function () {
   iziToast.success({

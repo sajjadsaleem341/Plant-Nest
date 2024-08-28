@@ -147,7 +147,7 @@ function manage_cart(pid, type) {
                 if (type === 'update' || type === 'remove') {
                     window.location.reload();
                 } else {
-                    jQuery("#registration_success").click();
+                    jQuery("#cart_add").click();
                 }
             }
         },
