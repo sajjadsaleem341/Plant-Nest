@@ -113,13 +113,38 @@ if (isset($_SESSION['USER_LOGIN'])) {
                                         onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
                                             class="fa fa-plus" aria-hidden="true"></i></span>
                                 </div>
-                                    <a class="btn alazea-btn ml-15" href="javascript:void(0)" onclick="manage_cart('<?= $get_product['0']['Id']?>','add'); "><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a>
+
+                                <?php
+                        if(!isset($_SESSION['USER_LOGIN'])){
+                            ?>
+                                <a href="#myModal" data-toggle="modal" class="btn alazea-btn ml-15"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a>
+                            <?php
+                        }
+                        else{
+                            ?>
+                            <a class="btn alazea-btn ml-15" href="javascript:void(0)" onclick="manage_cart('<?= $get_product['0']['Id']?>','add'); "><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</a>
+                            <?php
+                        }
+                        ?>
                             </form>
                             <!-- Wishlist -->
                             <div class="wishlist-compare d-flex flex-wrap align-items-center">
-                                <button style="border:none; color:#70c745" class="wishlist-btn ml-15" id="favorite-button">
-                                <i class="fa <?= $is_favorited ? 'fa-heart' : 'fa-heart-o' ?>"></i>
-                            </button>
+                            <?php
+                        if(!isset($_SESSION['USER_LOGIN'])){
+                            ?>
+                            <a href="#myModal" data-toggle="modal" style="border:none; color:#70c745" class="wishlist-btn ml-15" id="favorite-button">
+                            <i class="fa <?= $is_favorited ? 'fa-heart' : 'fa-heart-o' ?>"></i>
+                        </a>
+                            <?php
+                        }
+                        else{
+                            ?>
+                            <a style="border:none; color:#70c745" class="wishlist-btn ml-15" id="favorite-button">
+                            <i class="fa <?= $is_favorited ? 'fa-heart' : 'fa-heart-o' ?>"></i>
+                        </a>
+                            <?php
+                        }
+                        ?>
                             </div>
                         </div>
 
@@ -329,7 +354,7 @@ if (isset($_SESSION['USER_LOGIN'])) {
                     <div class="single-product-area mb-100">
                         <!-- Product Image -->
                         <div class="product-img">
-                            <a href="product.php"><img src="/image/<?= $product['Image'] ?>" alt=""></a>
+                            <a href="product.php"><img src="./image/<?= $product['Image'] ?>" alt=""></a>
                             <!-- Product Tag -->
                             <div class="product-tag">
                                 <a href="#">Hot</a>

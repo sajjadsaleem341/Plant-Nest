@@ -38,6 +38,7 @@ if(isset($_POST['update_order_status'])){
                                         $address=$userInfo['Address'];
                                         $city=$userInfo['City'];
                                         $pincode=$userInfo['Pincode'];
+                                        $comment=$userInfo['Comment'];
                                         while($row=mysqli_fetch_assoc($res)){
                                         $total_price=$total_price+($row['Qty']*$row['Price'])
                                     ?>
@@ -71,6 +72,10 @@ if(isset($_POST['update_order_status'])){
                       <div style="color:black"; class="card-header">
                         <h4>Address</h4>
                         <?= $address ?>, <?= $city ?>, <?= $pincode ?>
+                      </div>
+                      <div style="color:black"; class="card-header">
+                        <h4>Note</h4>
+                        <?= $comment ?>
                       </div>
                       <div style="color:black"; class="card-header">
                         <h4>Order Status</h4>
