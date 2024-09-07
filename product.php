@@ -329,16 +329,7 @@ if (isset($_SESSION['USER_LOGIN'])) {
                     <div class="single-product-area mb-100">
                         <!-- Product Image -->
                         <div class="product-img">
-                            <a href="product.php"><img src="/image/<?= $product['Image'] ?>" alt=""></a>
-                            <!-- Product Tag -->
-                            <div class="product-tag">
-                                <a href="#">Hot</a>
-                            </div>
-                            <div class="product-meta d-flex justify-content-center">
-                                <a href="cart.php" class="add-to-cart-btn">Add to cart</a>
-                                <!-- <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-                                <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a> -->
-                            </div>
+                            <a href="product.php?id=<?= $product['Id'] ?>"><img src="./image/<?= $product['Image'] ?>" alt=""></a>
                         </div>
                         <!-- Product Info -->
                         <div class="product-info mt-15 text-center">
