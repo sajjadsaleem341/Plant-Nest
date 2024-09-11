@@ -1,5 +1,11 @@
 <?php
 include 'header.php';
+if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN']!=''){
+}
+else {
+    echo "<script>window.location.href='Index.php'</script>";
+   die();
+}
 ?>
 <!-- ##### Breadcrumb Area Start ##### -->
 <div class="breadcrumb-area">

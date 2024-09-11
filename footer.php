@@ -30,15 +30,12 @@
                         </div>
                         <nav class="widget-nav">
                             <ul>
-                                <li><a href="#">Purchase</a></li>
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Payment</a></li>
-                                <li><a href="#">News</a></li>
-                                <li><a href="#">Return</a></li>
-                                <li><a href="#">Advertise</a></li>
-                                <li><a href="#">Shipping</a></li>
-                                <li><a href="#">Career</a></li>
-                                <li><a href="#">Orders</a></li>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Shop</a></li>
+                                <li><a href="#">Galley</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Feedback</a></li>
                             </ul>
                         </nav>
                     </div>
