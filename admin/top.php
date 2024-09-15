@@ -76,7 +76,7 @@ $row = mysqli_fetch_array($res);
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
             <a href="categories.php"> <img alt="image" src="../image/logo.png" class="header-logo" /> <span
-                class="logo-name">Art Arena</span>
+                class="logo-name">Plant Nest</span>
             </a>
           </div>
           <ul class="sidebar-menu">

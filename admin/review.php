@@ -66,7 +66,7 @@ $res = mysqli_query($con, $select);
 
                                         <!-- <a href="orders_detail.php?id=<?= $row['order_id'] ?>"><?= $row['order_id'] ?></a> -->
 
-                                        <a href="feedback_delete.php?id=<?= $row['id'] ?>" class="btn btn-icon btn-danger text-white"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="review_delete.php?id=<?= $row['id'] ?>" class="btn btn-icon btn-danger text-white"><i class="fas fa-trash-alt"></i></a>
                                        </td>
                                     </tr>
                                     <?php
