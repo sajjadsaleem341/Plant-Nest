@@ -93,13 +93,16 @@ $row = mysqli_fetch_array($res);
             <li class="dropdown <?= $active=="order.php"? 'active':''; ?>">
               <a href="order.php" class="nav-link"><i data-feather="monitor"></i><span>Orders</span></a>
             </li>
+            <li class="dropdown <?= $active=="review.php"? 'active':''; ?>">
+              <a href="review.php" class="nav-link"><i data-feather="monitor"></i><span>Reviews</span></a>
+            </li>
             <li class="dropdown <?= $active=="users.php"? 'active':''; ?>">
               <a href="users.php" class="nav-link"><i data-feather="monitor"></i><span>Users</span></a>
             </li>
             <li class="dropdown <?= $active=="contact_us.php"? 'active':''; ?>">
               <a href="contact_us.php" class="nav-link"><i data-feather="monitor"></i><span>Contact Us</span></a>
             </li>
-            <li class="dropdown <?= $active=="contact_us.php"? 'active':''; ?>">
+            <li class="dropdown <?= $active=="feedback.php"? 'active':''; ?>">
               <a href="feedback.php" class="nav-link"><i data-feather="monitor"></i><span>Feedback</span></a>
             </li>
             <li class="menu-header">Admin Users</li>

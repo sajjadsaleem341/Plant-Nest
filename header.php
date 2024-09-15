@@ -110,10 +110,25 @@ $totalProduct=$obj->totalProduct();
                                 </div>
                                 <!-- Cart -->
                                 <div class="cart">
-                                <a href="cart.php">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    <span>Cart <span class="cart-quantity">(<?php echo $totalProduct ?>)</span></span>
-                                </a>
+                                    <?php
+                        if(!isset($_SESSION['USER_LOGIN'])){
+                            ?>
+                                    <a href="#myModal" data-toggle="modal">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <span>Cart</span>
+                                    </a>
+                                    <?php
+                        }
+                        else{
+                            ?>
+                                    <a href="cart.php">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <span>Cart <span
+                                                class="cart-quantity">(<?php echo $totalProduct ?>)</span></span>
+                                    </a>
+                                    <?php
+                        }
+                        ?>
 
                                 </div>
                             </div>
@@ -131,7 +146,8 @@ $totalProduct=$obj->totalProduct();
                     <nav class="classy-navbar justify-content-between" id="alazeaNav">
 
                         <!-- Nav Brand -->
-                        <a href="index.php" class="nav-brand"><img src="img/logo/png/logo-no-background.png" alt="" width="200px"></a>
+                        <a href="index.php" class="nav-brand"><img src="img/logo/plant-nest-high-resolution-logo-white-transparent.png" alt=""
+                                width="200px"></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -170,8 +186,7 @@ $totalProduct=$obj->totalProduct();
                     <!-- Search Form -->
                     <div class="search-form">
                         <form action="search.php" method="get">
-                            <input type="text" name="str" id="search"
-                                placeholder="Type keywords &amp; press enter...">
+                            <input type="text" name="str" id="search" placeholder="Type keywords &amp; press enter...">
                             <!-- <button type="submit" class="d-none"></button> -->
                         </form>
                         <!-- Close Icon -->
