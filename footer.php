@@ -104,7 +104,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 <!--Modal JS-->
 <script src="js/L_S.js"></script>
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script> -->
 </body>
 
 </html>
